@@ -20,13 +20,13 @@ class TestTextNode(unittest.TestCase):
         self.assertNotEqual(node, node2)
 
     def test_plain_text(self):
-        node = TextNode("This is a text node", TextType.PLAIN_TEXT)
-        node2 = TextNode("This is a different text node", TextType.PLAIN_TEXT)
+        node = TextNode("This is a text node", TextType.TEXT)
+        node2 = TextNode("This is a different text node", TextType.TEXT)
         self.assertNotEqual(node, node2)
 
 
     def test_text(self):
-        node = TextNode("This is a text node", TextType.PLAIN_TEXT)
+        node = TextNode("This is a text node", TextType.TEXT)
         html_node = text_node_to_html_node(node)
         self.assertEqual(html_node.tag, None)
         self.assertEqual(html_node.value, "This is a text node")
