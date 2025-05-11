@@ -87,7 +87,7 @@ def paragraph_to_html_node(block):
     lines = block.split("\n")
     paragraph = " ".join(lines)
     children = text_to_children(paragraph)
-    return ParentNode("p", children)
+    return ParentNode("p", children, None)
 
 
 def heading_to_html_node(block):
@@ -101,7 +101,7 @@ def heading_to_html_node(block):
         raise ValueError(f"invalid heading level: {level}")
     text = block[level + 1 :]
     children = text_to_children(text)
-    return ParentNode(f"h{level}", children)
+    return ParentNode(f"h{level}", children, None)
 
 
 def code_to_html_node(block):
@@ -110,8 +110,8 @@ def code_to_html_node(block):
     text = block[4:-3]
     raw_text_node = TextNode(text, TextType.TEXT)
     child = text_node_to_html_node(raw_text_node)
-    code = ParentNode("code", [child])
-    return ParentNode("pre", [code])
+    code = ParentNode("code", [child], None)
+    return ParentNode("pre", [code], None)
 
 
 def olist_to_html_node(block):
@@ -120,8 +120,8 @@ def olist_to_html_node(block):
     for item in items:
         text = item[3:]
         children = text_to_children(text)
-        html_items.append(ParentNode("li", children))
-    return ParentNode("ol", html_items)
+        html_items.append(ParentNode("li", children, None))
+    return ParentNode("ol", html_items, None)
 
 
 def ulist_to_html_node(block):
@@ -130,8 +130,8 @@ def ulist_to_html_node(block):
     for item in items:
         text = item[2:]
         children = text_to_children(text)
-        html_items.append(ParentNode("li", children))
-    return ParentNode("ul", html_items)
+        html_items.append(ParentNode("li", children, None))
+    return ParentNode("ul", html_items, None)
 
 
 def quote_to_html_node(block):
@@ -143,4 +143,4 @@ def quote_to_html_node(block):
         new_lines.append(line.lstrip(">").strip())
     content = " ".join(new_lines)
     children = text_to_children(content)
-    return ParentNode("blockquote", children)
+    return ParentNode("blockquote", children, None)
