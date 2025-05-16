@@ -3,10 +3,10 @@ from generate import *
 import sys
 
 def main():
-    if not sys.argv[0]:
+    if len(sys.argv) == 1:
         basepath = "/"
     else:
-        basepath = sys.argv[0]
+        basepath = sys.argv[1]
 
     print("Deleting public directory...")
     if os.path.exists("docs"):
