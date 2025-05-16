@@ -9,14 +9,14 @@ def main():
         basepath = sys.argv[0]
 
     print("Deleting public directory...")
-    if os.path.exists("public"):
-        shutil.rmtree("public")
+    if os.path.exists("docs"):
+        shutil.rmtree("docs")
 
     print("Copying static files to public directory...")
-    copy_directory_contents("static", "public")
+    copy_directory_contents("static", "docs")
 
     print("Generating content...")
-    generate_pages_recursive("content", "template.html", "public", basepath)
+    generate_pages_recursive("content", "template.html", "docs", basepath)
 
 if __name__ == "__main__":
     main()
