@@ -1,7 +1,13 @@
 from copystatic import *
 from generate import *
+import sys
 
 def main():
+    if not sys.argv[0]:
+        basepath = "/"
+    else:
+        basepath = sys.argv[0]
+
     print("Deleting public directory...")
     if os.path.exists("public"):
         shutil.rmtree("public")
